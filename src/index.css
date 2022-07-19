@@ -16,4 +16,21 @@
 
 body{
   margin: 0px;
+  
+}
+
+::-moz-selection {
+  background: #455a64;
+  color: #FFFFFF;
+
+}
+::-webkit-selection {
+  background: #455a64;
+  color: #FFFFFF;
+  
+}
+::selection {
+  background: #455a64;
+  color: #FFFFFF;
+
 }

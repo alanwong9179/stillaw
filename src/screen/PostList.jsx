@@ -5,7 +5,7 @@ import PostPreview from '../component/PostPreview'
 const arr = ["","","","","","","","","",]
 
     const postInfo = {
-    id: '001',
+    id: '1',
     time:'2022-06-09' ,
     tag:'BUGS', 
     title:'Why couldnt she understand that? She knew hed completely changed his life around her eating habits', 
@@ -13,7 +13,7 @@ const arr = ["","","","","","","","","",]
 
 export default function PostList() {
   return (
-    <Grid container spacing={3}>
+    <Grid container rowSpacing={4} justifyContent={"space-around"}>
         {arr.map(i => (
         <Grid id={i} item sx={{textAlign:'center'}} xs={12} sm={12} md={6} lg={4} xl={4}>
         <PostPreview postInfo={postInfo}/>
