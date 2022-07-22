@@ -7,6 +7,7 @@ import { Divider } from '@mui/material';
 import moment from 'moment'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PostTag from './PostTag';
 
 export default function PostPreview({ postInfo }) {
    
@@ -50,7 +51,7 @@ export default function PostPreview({ postInfo }) {
       </Box>
       </Box>
       <Box sx={{ textAlign: '-webkit-center' }} mt={1}>
-        <Box sx={{ width: 'fit-content', backgroundColor: blueGrey[600], color: '#fff', borderRadius: '4px', padding: '1px 5px', fontSize:'0.8rem' }}>{postInfo.tag}</Box>
+       <PostTag tag={postInfo.tag}/>
       </Box>
       <Box mt={1} sx={{ fontFamily: "'EB Garamond', serif" }} >
         {postInfo.title}

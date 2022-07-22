@@ -59,38 +59,37 @@ export default function MainHeader() {
 
   return (
     <Box> 
-    <Box display="flex" flexDirection="row" >
-        <Box sx={{fontFamily:"'EB Garamond', serif", fontSize:'2rem'}} flex={1} >
-            Still. aw
+        <Box display="flex" flexDirection="row" >
+            <Box sx={{fontFamily:"'EB Garamond', serif", fontSize:'2rem'}} flex={1} >
+                Still. aw
+            </Box>
+
+            <Box display={{xs:'none', sm: 'none', md:'block', lg:'block', xl:'block'}}>
+                <Stack direction="row" spacing={2}>
+                    <RightLink locName={"home"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck}/>
+                    <RightLink locName={"about"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck}/>
+                    <RightLink locName={"works"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck}/>
+                </Stack>
+            </Box>
+
+            <Box display={{xs:'block', sm: 'block', md:'none', lg:'none', xl:'none'}}>
+
+                <AnimatedIconButton sx={{padding: 0}} onClick={()=>{setShowNav(!showNav)}} style={{...navProps}}>
+                    <CloseIcon /> 
+                </AnimatedIconButton>
+
+                <AnimatedIconButton sx={{padding: 0}} onClick={()=>{setShowNav(!showNav)}} style={{...closePros}}>
+                    <MenuIcon /> 
+                </AnimatedIconButton>
+            </Box>
         </Box>
-
-        <Box display={{xs:'none', sm: 'none', md:'block', lg:'block', xl:'block'}}>
-            <Stack direction="row" spacing={2}>
-                <RightLink locName={"home"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck}/>
-                <RightLink locName={"about"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck}/>
-                <RightLink locName={"works"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck}/>
-            </Stack>
+        <Box mt={1}>
+            <AnimatedStack sx={{textAlign:'center', overflow:'hidden'}} style={{...dropMenuProps}}>
+                    <RightLink locName={"home"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
+                    <RightLink locName={"about"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
+                    <RightLink locName={"works"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
+            </AnimatedStack>
         </Box>
-
-        <Box display={{xs:'block', sm: 'block', md:'none', lg:'none', xl:'none'}}>
-
-            <AnimatedIconButton sx={{padding: 0}} onClick={()=>{setShowNav(!showNav)}} style={{...navProps}}>
-                <CloseIcon /> 
-            </AnimatedIconButton>
-
-            <AnimatedIconButton sx={{padding: 0}} onClick={()=>{setShowNav(!showNav)}} style={{...closePros}}>
-                <MenuIcon /> 
-            </AnimatedIconButton>
-        </Box>
-    </Box>
-    <Box mt={1}>
-        <AnimatedStack sx={{textAlign:'center', overflow:'hidden'}} style={{...dropMenuProps}}>
-                <RightLink locName={"home"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
-                <RightLink locName={"about"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
-                <RightLink locName={"works"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
-        </AnimatedStack>
-    </Box>
-
     </Box>
   )
 }

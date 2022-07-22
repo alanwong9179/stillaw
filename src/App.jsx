@@ -12,11 +12,14 @@ function App() {
   const articlePage = currentRoute.includes('article')
   return (
     <Box
-      mt={articlePage ? 0 : 5}
-      ml={{ xl: articlePage ? 0 : 40 , lg: articlePage ? 0 : 20, md: articlePage ? 0 : 20, sm: articlePage ? 0 : 15, xs: articlePage ? 0 : 5 }}
-      mr={{ xl: articlePage ? 0 : 40 , lg: articlePage ? 0 : 20, md: articlePage ? 0 : 20, sm: articlePage ? 0 : 15, xs: articlePage ? 0 : 5 }}
+   //   mt={articlePage ? 0 : 5}
+  //    ml={{ xl: articlePage ? 0 : 40 , lg: articlePage ? 0 : 20, md: articlePage ? 0 : 20, sm: articlePage ? 0 : 15, xs: articlePage ? 0 : 5 }}
+   //   mr={{ xl: articlePage ? 0 : 40 , lg: articlePage ? 0 : 20, md: articlePage ? 0 : 20, sm: articlePage ? 0 : 15, xs: articlePage ? 0 : 5 }}
+   mt={ 5}
+  ml={{ xl: 40 , lg: 20, md: 20, sm: 15, xs: 5 }}
+  mr={{ xl: 40 , lg: 20, md: 20, sm: 15, xs: 5 }}
     >
-      <Box sx={{display: articlePage ? 'none' : 'block'}}>
+      <Box sx={{display: articlePage ? 'block' : 'block',}}>
         <MainHeader />
       </Box>
       <Box mt={ articlePage ? 0 : 6}>
