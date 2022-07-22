@@ -20,7 +20,8 @@
     "react-lottie-player": "^1.4.3",
     "react-router-dom": "^6.3.0",
     "react-spring": "^9.5.0",
-    "react-use-measure": "^2.1.1"
+    "react-use-measure": "^2.1.1",
+    "react-use-scroll-direction": "^0.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.15",
