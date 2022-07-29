@@ -1,82 +1,77 @@
-import { useState, useEffect } from 'react'
-import { Box } from '@mui/material'
-import MainHeader from './screen/MainHeader'
-import PostList from './screen/PostList'
-import { Routes, Route } from 'react-router-dom'
-import NotFound from './screen/NotFound'
-import Article from './screen/Article'
-import { useLocation } from 'react-router-dom'
-import { useScrollDirection } from 'react-use-scroll-direction';
-import { animated, useSpring } from 'react-spring'
-import useMeasure from 'react-use-measure'
+import { useState, useEffect } from "react";
+import { Box } from "@mui/material";
+import MainHeader from "./screen/MainHeader";
+import PostList from "./screen/PostList";
+import { Routes, Route } from "react-router-dom";
+import NotFound from "./screen/NotFound";
+import Article from "./screen/Article";
+import { useLocation } from "react-router-dom";
+import { useScrollDirection } from "react-use-scroll-direction";
+import { animated, useSpring } from "react-spring";
+import useMeasure from "react-use-measure";
+import Footer from "./screen/Footer";
+import Pagination from "@mui/material/Pagination";
 
 function App() {
   const currentRoute = useLocation().pathname;
-  const articlePage = currentRoute.includes('article')
-  const { isScrollingUp, isScrollingDown } = useScrollDirection()
-  const [ref, bounds] = useMeasure()
+  const articlePage = currentRoute.includes("article");
+  const { isScrollingUp, isScrollingDown } = useScrollDirection();
+  const [ref, bounds] = useMeasure();
 
-  const AnimatedBox = animated(Box)
+  const AnimatedBox = animated(Box);
 
-  const [moveHeader, onMoveHeader] = useSpring(()=>({
+  const [moveHeader, onMoveHeader] = useSpring(() => ({
     loop: false,
-    from: { y: -73,},
-    to: {  y: 0,},
-  }))
+    from: { y: -73 },
+    to: { y: 0 },
+  }));
+
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
-    isScrollingDown ?
-    onMoveHeader.start({
-      from :{
-        y:  `-${bounds.height}px`
-      },
-      to: {
-        y: 0 
-      }
-     // transform: `translateY(-${bounds.height}px)`
-    })
-    :
-    isScrollingUp ?
-    onMoveHeader.start({
-      from :{
-        y: 0 
-      },
-      to: {
-        y:  `-${bounds.height}px`
+    isScrollingUp
+      ? onMoveHeader.start({
+          from: { y: moveHeader.y.get()},
+          to: {y: 0},
+        })
+      : isScrollingDown
+      ? onMoveHeader.start({
+          from: { y: moveHeader.y.get()},
+          to: {y: -73},
+        })
+      : null;
+  }, [isScrollingUp, isScrollingDown]);
 
-      }
-     // transform: `translateY(-${bounds.height}px)`
-    })
-    :
-    null
-
-  }, [isScrollingUp, isScrollingDown])
-  
-
-  console.log(isScrollingDown)
+  const onPageChange = (e, v) => {
+    setPage(v)
+  }
 
   return (
-    <Box
-   //   mt={articlePage ? 0 : 5}
-  //    ml={{ xl: articlePage ? 0 : 40 , lg: articlePage ? 0 : 20, md: articlePage ? 0 : 20, sm: articlePage ? 0 : 15, xs: articlePage ? 0 : 5 }}
-   //   mr={{ xl: articlePage ? 0 : 40 , lg: articlePage ? 0 : 20, md: articlePage ? 0 : 20, sm: articlePage ? 0 : 15, xs: articlePage ? 0 : 5 }}
-  
-    >
-      <AnimatedBox 
-      sx={{display: articlePage ? 'block' : 'block', backgroundColor:'#2200FF',zIndex:10, position:'fixed', top: 0, right: 0, left:0}} 
-      pt={3}
-      pb={2}
-      pl={{ xl: 40 , lg: 20, md: 20, sm: 15, xs: 5 }}
-      pr={{ xl: 40 , lg: 20, md: 20, sm: 15, xs: 5 }}
-      style={{...moveHeader}}
-      ref={ref}
+    <Box>
+      <AnimatedBox
+        sx={{
+          display: articlePage ? "block" : "block",
+          zIndex: 10,
+          position: "fixed",
+          top: 0,
+          right: 0,
+          left: 0,
+          backdropFilter: "blur(1px)",
+          backgroundColor: "#fbfbfb99",
+        }}
+        pt={3}
+        pb={2}
+        pl={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+        pr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+        style={{ ...moveHeader }}
+        ref={ref}
       >
         <MainHeader />
       </AnimatedBox>
-      <Box 
-      mt={ articlePage ? 0 : 6}
-      ml={{ xl: 40 , lg: 20, md: 20, sm: 15, xs: 5 }}
-      mr={{ xl: 40 , lg: 20, md: 20, sm: 15, xs: 5 }}
+      <Box
+        mt={articlePage ? 0 : "73px"}
+        ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+        mr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
       >
         <Routes>
           <Route path="/" element={<PostList />} />
@@ -85,8 +80,19 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Box>
+      <Box
+        mt={3}
+        ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+        mr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+      >
+        <Pagination
+        sx={{'ul': {justifyContent:'center', 'button': {fontFamily:"'EB Garamond', serif"}}}}
+        count={10} shape="rounded" page={page} onChange={onPageChange}/>
+
+        <Footer />
+      </Box>
     </Box>
-  )
+  );
 }
 
-export default App
+export default App;

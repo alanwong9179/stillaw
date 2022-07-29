@@ -20,7 +20,7 @@ export default function Article() {
   return (
     <Box>
       <Box
-        mt={5}
+        mt={'73px'}
      //   ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
        // mr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
       >
