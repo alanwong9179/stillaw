@@ -60,7 +60,7 @@ export default function PostPreview({ postInfo }) {
         <hr style={{ width:'10%'}}></hr>
       </Box>
       <Box mt={1} sx={{ fontFamily: "'EB Garamond', serif" , color: blueGrey[600], fontSize: '0.8rem'}}>
-        {moment(postInfo.time).format('DD MMM YYYY')}
+        {(postInfo.date)}
       </Box>
 
       
