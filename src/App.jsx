@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import NotFound from "./screen/NotFound";
 import Article from "./screen/Article";
 import { useLocation } from "react-router-dom";
-import { useScrollDirection } from "react-use-scroll-direction";
+//import { useScrollDirection } from "react-use-scroll-direction";
 import { animated, useSpring } from "react-spring";
 import useMeasure from "react-use-measure";
 import Footer from "./screen/Footer";
@@ -14,17 +14,21 @@ import Pagination from "@mui/material/Pagination";
 import { getBlogs } from "./functions/selectDb";
 import { Admin } from "./screen/Admin";
 import About from "./screen/About";
+import useScrollDirection from "./functions/useScrollDirection";
 
 function App() {
   const currentRoute = useLocation().pathname;
   const articlePage = currentRoute.includes("article");
   const bloglistPage = currentRoute.includes("home") || currentRoute === '/'
   const adminPage = currentRoute.includes("admin")
-  const { isScrollingUp, isScrollingDown , isScrollingY } = useScrollDirection();
+ // const { isScrollingUp, isScrollingDown , isScrollingY } = useScrollDirection();
   const [ref, bounds] = useMeasure();
   const [page, setPage] = useState(1)
   const AnimatedBox = animated(Box);
-  const currLoc = window.pageYOffset;
+
+  const scrollDirection = useScrollDirection()
+
+
 //  const [isErrorPage, setIsErrorPage] = useState(false)
   /*animation*/
   const [moveHeader, onMoveHeader] = useSpring(() => ({
@@ -34,20 +38,30 @@ function App() {
   }));
 
   useEffect(() => {
-    console.log()
-
-    isScrollingUp
-      ? onMoveHeader.start({
+  /*  isScrollingUp ? 
+    onMoveHeader.start({
           from: { y: moveHeader.y.get()},
           to: {y: 0},
         })
-      : isScrollingDown
-      ? onMoveHeader.start({
+      : isScrollingDown ?
+         onMoveHeader.start({
           from: { y: moveHeader.y.get()},
           to: {y: -73},
         })
-      : null;
-  }, [isScrollingUp, isScrollingDown]);
+      : null;*/
+      scrollDirection === 'down' ?
+      onMoveHeader.start({
+        from: { y: moveHeader.y.get()},
+        to: {y: -73}
+      }) 
+      :
+      onMoveHeader.start({
+        from: { y: moveHeader.y.get()},
+        to: {y: 0},
+      })
+      
+      console.log(scrollDirection)
+  }, [scrollDirection]);
 
 
 
@@ -57,29 +71,30 @@ function App() {
     setPage(v)
   }
 
-
-
-
   return (
     <Box >
-
       <AnimatedBox 
-        sx={{
+         sx={{
           display: adminPage ? "block" : "block",
           zIndex: 10,
-          position: "fixed",
-          top: 0,
-          right: 0,
-          left: 0,
+         // position: "fixed",
+        //  top: 0,
+        //  right: 0,
+        //  left: 0,
+          position: "sticky",
+         // height: 73 ,
+        //  top: scrollDirection ? -90 : 0,
+        top: 0,
           backdropFilter: "blur(1px)",
           backgroundColor: "#fbfbfb99",
+          
         }}
+       // className={`header ${ scrollDirection === "down" ? "hide" : "show"}`}
         pt={3}
         pb={2}
         pl={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         pr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
-        style={{currLoc === 0 ? ...moveHeader : d}}
-       
+        style={{...moveHeader}}
       >
         <MainHeader />
       </AnimatedBox>
