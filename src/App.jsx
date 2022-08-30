@@ -22,7 +22,6 @@ function App() {
   const bloglistPage = currentRoute.includes("home") || currentRoute === '/'
   const adminPage = currentRoute.includes("admin")
  // const { isScrollingUp, isScrollingDown , isScrollingY } = useScrollDirection();
-  const [ref, bounds] = useMeasure();
   const [page, setPage] = useState(1)
   const AnimatedBox = animated(Box);
 
@@ -60,7 +59,6 @@ function App() {
         to: {y: 0},
       })
       
-      console.log(scrollDirection)
   }, [scrollDirection]);
 
 
@@ -100,7 +98,7 @@ function App() {
       </AnimatedBox>
 
       <Box
-        mt={articlePage ? 0 : "85px"}
+        mt={articlePage ? 0 : "0px"}
         ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         mr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         minHeight='83vh'

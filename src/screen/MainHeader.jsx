@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@mui/system'
 import { IconButton, Stack } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { blueGrey } from "@mui/material/colors"
 import { useSpring, animated } from "react-spring";
 import Divider from '@mui/material/Divider';
@@ -32,7 +32,7 @@ const RightLink = ({ locName, setHoverCheck, hoverCheck, setShowNav }) => {
     }, [hoverCheck])
 
     return (
-        <Box sx={{ fontFamily: "'EB Garamond', serif" }} onMouseEnter={() => { setHoverCheck(locName) }} onMouseLeave={() => { setHoverCheck() }}>
+        <Box sx={{ fontFamily: "'Manrope', serif", fontWeight: isHovered ? 700 : 400 }} onMouseEnter={() => { setHoverCheck(locName) }} onMouseLeave={() => { setHoverCheck() }}>
 
             {<Link style={{ textDecoration: 'none', color: blueGrey[isHovered ? 500 : 300] }} to={`/${locName.toUpperCase()}`} >
                 {locName.toUpperCase()}
@@ -47,6 +47,8 @@ export default function MainHeader() {
     const AnimatedIconButton = animated(IconButton);
     const [showNav, setShowNav] = useState(false);
 
+    const location = useLocation()
+
     const navProps = useSpring({ transform: `translateX(${showNav ? '20' : '0'}px)`, opacity: showNav ? 1 : 0 });
     const closePros = useSpring({ opacity: showNav ? 0 : 1 });
 
@@ -56,6 +58,11 @@ export default function MainHeader() {
         opacity: showNav ? 1 : 0,
         config: { friction: 18 }
     })
+
+    useEffect(()=>{
+        setShowNav(false)
+    },[location.pathname])
+
 
 
 
