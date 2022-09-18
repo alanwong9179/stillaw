@@ -8,8 +8,6 @@ import Divider from '@mui/material/Divider';
 import { useState, useEffect } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import useMeasure from 'react-use-measure'
-import { useNavigate } from 'react-router-dom';
 
 const RightLink = ({ locName, setHoverCheck, hoverCheck, setShowNav }) => {
 
@@ -69,7 +67,7 @@ export default function MainHeader() {
     return (
         <Box>
             <Box display="flex" flexDirection="row" >
-                <Box sx={{ fontFamily: "'EB Garamond', serif", fontSize: '2rem' }} flex={1} >
+                <Box sx={{ fontFamily: "'EB Garamond', serif", fontSize: '2rem', }} flex={1} >
                     Still. aw
                 </Box>
 

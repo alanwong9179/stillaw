@@ -14,14 +14,16 @@ const postInfo = {
   content: '<div style="height: 1000px">123</div>'
 }
 
+
+
 export default function Article() {
-  let { articleId } = useParams();
+  //let { articleId } = useParams();
 
   return (
     <Box>
       <Box
         mt={'73px'}
-     //   ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+     // ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
        // mr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
       >
         <Typography variant="h3" component="div" gutterBottom sx={{ fontFamily: "'Noto Sans HK', sans-serif", fontSize: '2.5rem', fontWeight: 600, color: blueGrey[800]}}>

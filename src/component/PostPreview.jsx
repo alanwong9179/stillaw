@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PostTag from './PostTag';
 import { Skeleton } from '@mui/material'
+import { useSpring, animated } from '@react-spring/web'
+
 
 export default function PostPreview({ postInfo , setSelectedPost}) {
 
@@ -18,44 +20,51 @@ export default function PostPreview({ postInfo , setSelectedPost}) {
     navigate(`/article/${id}`)
   }
 
+  const AnimatedBox = animated(Box)
+
   return (
 
 
     <Box>
       <Box sx={{ textAlign: '-webkit-center', position: 'relative' }} >
         <Box
-          onMouseEnter={() => { setOnHover(true) }}
-          onMouseLeave={() => { setOnHover(false) }}
           sx={{
             width: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
             height: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
             backgroundColor: blueGrey[50],
-            cursor: 'pointer'
+            cursor: 'pointer',
+            borderRadius: 10
           }}
           onClick={() => { 
-           // goToPost(postInfo.id) 
            setSelectedPost(postInfo.id) 
           }}
         >
           <LazyLoadImage
-            style={{ objectFit: 'cover', opacity: `${onHover ? '0.7' : '1'}` }}
+            style={{ objectFit: 'cover', borderRadius: 20}}
             effect="blur"
             height={'100%'}
             width={'100%'}
             afterLoad={() => { setLoaded(true) }}
             src={[postInfo.imgUrl]} />
         </Box>
-        <Box
+        <AnimatedBox
+        onMouseEnter={() => { setOnHover(true) }}
+        onMouseLeave={() => { setOnHover(false) }}
           sx={{
+            background: 'linear-gradient(0deg, rgba(33,33,33,0.552280287114846) 0%, rgba(255,255,255,0) 50%)',
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            opacity: onHover ? 1 : 0
+            opacity: onHover ? 1 : 0,
+            width: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
+            height: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
+            borderRadius: 5
+
           }}
-        >
-          More
-        </Box>
+        >    
+        More
+        </AnimatedBox>
       </Box>
       <Box sx={{ textAlign: '-webkit-center' }} mt={1}>
         {

@@ -6,15 +6,14 @@ import { Routes, Route } from "react-router-dom";
 import NotFound from "./screen/NotFound";
 import Article from "./screen/Article";
 import { useLocation } from "react-router-dom";
-//import { useScrollDirection } from "react-use-scroll-direction";
 import { animated, useSpring } from "react-spring";
-import useMeasure from "react-use-measure";
 import Footer from "./screen/Footer";
 import Pagination from "@mui/material/Pagination";
-import { getBlogs } from "./functions/selectDb";
 import { Admin } from "./screen/Admin";
 import About from "./screen/About";
 import useScrollDirection from "./functions/useScrollDirection";
+import { mainColor, secondColor } from "./config/color";
+import { blueGrey } from "@mui/material/colors"
 
 function App() {
   const currentRoute = useLocation().pathname;
@@ -37,17 +36,6 @@ function App() {
   }));
 
   useEffect(() => {
-  /*  isScrollingUp ? 
-    onMoveHeader.start({
-          from: { y: moveHeader.y.get()},
-          to: {y: 0},
-        })
-      : isScrollingDown ?
-         onMoveHeader.start({
-          from: { y: moveHeader.y.get()},
-          to: {y: -73},
-        })
-      : null;*/
       scrollDirection === 'down' ?
       onMoveHeader.start({
         from: { y: moveHeader.y.get()},
@@ -75,19 +63,13 @@ function App() {
          sx={{
           display: adminPage ? "block" : "block",
           zIndex: 10,
-         // position: "fixed",
-        //  top: 0,
-        //  right: 0,
-        //  left: 0,
           position: "sticky",
-         // height: 73 ,
-        //  top: scrollDirection ? -90 : 0,
-        top: 0,
+           top: 0,
           backdropFilter: "blur(1px)",
-          backgroundColor: "#fbfbfb99",
+          boxShadow: "0 1px 2px -2px #484848"
+         // backgroundColor: blueGrey[50]
           
         }}
-       // className={`header ${ scrollDirection === "down" ? "hide" : "show"}`}
         pt={3}
         pb={2}
         pl={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
@@ -98,9 +80,9 @@ function App() {
       </AnimatedBox>
 
       <Box
-        mt={articlePage ? 0 : "0px"}
-        ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
-        mr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+        pt={articlePage ? 0 : "0px"}
+        pl={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
+        pr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         minHeight='83vh'
       >
         <Routes>
