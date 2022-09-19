@@ -1,5 +1,5 @@
 import { fireStoreDB } from "./fireBaseSetting";
-import { collection, getDocs, doc} from "firebase/firestore"; 
+import { collection, getDocs, query, where, getDoc, doc} from "firebase/firestore"; 
 import moment from "moment";
 
 export async function getBlogs(){
@@ -25,6 +25,19 @@ export async function getBlogs(){
 
     return posts
 }
+
+export async function getPostDetails(postId){
+    const docRef = doc(fireStoreDB, "blogs", postId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return docSnap.data()
+        //console.log("Document data:", );
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+}   
 
 export async function getLastestBlogId(){
 

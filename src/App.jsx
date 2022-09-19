@@ -8,26 +8,20 @@ import Article from "./screen/Article";
 import { useLocation } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import Footer from "./screen/Footer";
-import Pagination from "@mui/material/Pagination";
 import { Admin } from "./screen/Admin";
 import About from "./screen/About";
 import useScrollDirection from "./functions/useScrollDirection";
-import { mainColor, secondColor } from "./config/color";
-import { blueGrey } from "@mui/material/colors"
+import Work from "./screen/Work";
+
 
 function App() {
   const currentRoute = useLocation().pathname;
   const articlePage = currentRoute.includes("article");
-  const bloglistPage = currentRoute.includes("home") || currentRoute === '/'
   const adminPage = currentRoute.includes("admin")
- // const { isScrollingUp, isScrollingDown , isScrollingY } = useScrollDirection();
-  const [page, setPage] = useState(1)
+
   const AnimatedBox = animated(Box);
 
   const scrollDirection = useScrollDirection()
-
-
-//  const [isErrorPage, setIsErrorPage] = useState(false)
   /*animation*/
   const [moveHeader, onMoveHeader] = useSpring(() => ({
     loop: false,
@@ -48,9 +42,6 @@ function App() {
       })
       
   }, [scrollDirection]);
-
-
-
 
   /*page control*/
   const onPageChange = (e, v) => {
@@ -91,23 +82,16 @@ function App() {
           <Route path="/article/:articleId" element={<Article />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/about" element={<About />} />
+          <Route path="/works" element={<Work />} />
           <Route path="*" element={<NotFound />}/>
         </Routes>
 
       </Box>
-
-
       <Box
         mt={3}
         ml={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         mr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
       >
-        {
-          bloglistPage &&
-          <Pagination
-          sx={{'ul': {justifyContent:'center', 'button': {fontFamily:"'EB Garamond', serif"}}}}
-          count={10} shape="rounded" page={page} onChange={onPageChange}/>
-        }
         <Footer />
       </Box>
     </Box>

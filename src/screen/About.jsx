@@ -8,6 +8,7 @@ import { useSpring, animated, easings } from "react-spring";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
+import { blueGrey } from "@mui/material/colors"
 
 
 export default function About() {
@@ -33,17 +34,17 @@ export default function About() {
     const firstP = (
     <Box >
         <Box overflow="hidden"  >
-        <AnimatedText style={picLoaded ? { ...showImageAnim} : {}} variant='body1' sx={{fontFamily: "'Manrope', serif", fontWeight:600 , fontSize: '2rem'}}>
+        <AnimatedText style={picLoaded ? { ...showImageAnim} : {}} variant='body1' sx={{fontFamily: "'Manrope', serif", fontWeight:600 , fontSize: '2rem' , color:blueGrey[200]}}>
             Alan Wong, Hong Kong based.
         </AnimatedText>
         </Box>
         <Box  overflow="hidden"  >
-        <AnimatedText style={picLoaded ? { ...showImageAnim} : {}} variant='body1' pt={2} sx={{fontFamily: "'Manrope', serif", fontWeight:600 , fontSize: '2rem'} }>
+        <AnimatedText style={picLoaded ? { ...showImageAnim} : {}} variant='body1' pt={2} sx={{fontFamily: "'Manrope', serif", fontWeight:600 , fontSize: '2rem',  color:blueGrey[200]} }>
             A full stack programmer,
         </AnimatedText>
         </Box>
         <Box  overflow="hidden"  >
-        <AnimatedText style={picLoaded ? { ...showImageAnim} : {}} variant='body1' pt={2} sx={{fontFamily: "'Manrope', serif", fontWeight:600 , fontSize: '2rem'}}>
+        <AnimatedText style={picLoaded ? { ...showImageAnim} : {}} variant='body1' pt={2} sx={{fontFamily: "'Manrope', serif", fontWeight:600 , fontSize: '2rem',  color:blueGrey[200]}}>
             A music, moive, photography lover.
         </AnimatedText>
         </Box>
@@ -93,7 +94,7 @@ export default function About() {
                         <LazyLoadImage
                             style={{ objectFit: 'cover' }}
                             effect="blur"
-                            height={500}
+                            height={300}
                             afterLoad={() => { setShowGrow(true) 
                                 setPicLoaded(true) }}
                             src={[profilepic]} />

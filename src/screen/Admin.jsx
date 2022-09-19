@@ -8,7 +8,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { Button } from '@mui/material';
 import { getLastestBlogId } from '../functions/selectDb';
-
+import {writeNewBlog} from '../functions/insertDb';
 const MDToolBar = (props) => {
 
   return(
@@ -21,14 +21,39 @@ const MDToolBar = (props) => {
 export const Admin = () => {
  
   const [value, setValue] = useState('');
-  const [postDetails, setPostDetails] = useState({post_id: '', tags: [], title:'', tempTag: ''});
-
+  const [postDetails, setPostDetails] = useState({post_id: '', tags:[], title:'', tempTag: '', imageUrl: ''});
 
   useEffect(()=>{
+    initPage()
+  }, [])
+
+  
+
+  const initPage = () => {
     getLastestBlogId().then(b_id => {
       setPostDetails({...postDetails, post_id: b_id + 1})
     })
-  }, [])
+
+    setValue('')
+    setPostDetails({post_id: '', tags:[], title:'', tempTag: '', imageUrl: ''})
+  }
+
+  const uploadBlog = () => {
+    writeNewBlog(
+      postDetails.post_id,
+      value,
+      postDetails.imageUrl,
+      postDetails.tags[0],
+      postDetails.title
+    ).then(res =>{
+      if (res) {
+        initPage()
+      }
+      else {
+        alert('failed')
+      }
+    })
+  }
 
   return (
     <Box>
@@ -40,11 +65,11 @@ export const Admin = () => {
         </Box>
         <Box  display={'flex'} flexDirection={'row'} alignItems={"center"} mt={1}>
             <Box flex={0.1}>Post Title :</Box>
-            <Box flex={0.9}><TextField id="outlined-basic" value={postDetails.title} variant="outlined" sx={{width: '80%'}} onChange={(e)=>{setPostDetails({...postDetails, post_title: e.target.value})}}/></Box>
+            <Box flex={0.9}><TextField id="outlined-basic" value={postDetails.post_title} variant="outlined" sx={{width: '80%'}} onChange={(e)=>{setPostDetails({...postDetails, title: e.target.value})}}/></Box>
         </Box>
         <Box  display={'flex'} flexDirection={'row'} alignItems={"center"} mt={1}>
             <Box flex={0.1}>Image Url :</Box>
-            <Box flex={0.9}><TextField id="outlined-basic" variant="outlined" sx={{width: '80%'}}/></Box>
+            <Box flex={0.9}><TextField id="outlined-basic" variant="outlined" sx={{width: '80%'}} onChange={(e)=>{setPostDetails({...postDetails, imageUrl: e.target.value})}}/></Box>
         </Box>
         <Box  display={'flex'} flexDirection={'row'} alignItems={"center"} mt={1}>
             <Box flex={0.1}>Post Tags :</Box>
@@ -98,7 +123,7 @@ export const Admin = () => {
               </code>
             )
           },
-          img:({node,...props})=><img style={{maxWidth:'100%', width:'50%'}}{...props}/>
+          img:({node,...props})=><img style={{maxWidth:'100%', }}{...props}/>
         }}
       />
 
@@ -106,7 +131,7 @@ export const Admin = () => {
     </Box>
 
     <Box textAlign={"center"}>
-      <Button variant="contained" color="success">Upload</Button>
+      <Button variant="contained" color="success" onClick={()=>{uploadBlog()}}>Upload</Button>
     </Box>
 
     
