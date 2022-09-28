@@ -30,12 +30,12 @@ export default function PostPreview({ postInfo, setSelectedPost }) {
             width: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
             height: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
             backgroundColor: blueGrey[50],
-            borderRadius: '15px'
+           // borderRadius: '8px'
           }}
          
         >
           <LazyLoadImage
-            style={{ objectFit: 'cover', borderRadius: '15px' }}
+            style={{ objectFit: 'cover', borderRadius: '0px' }}
             effect="blur"
             height={'100%'}
             width={'100%'}
@@ -58,7 +58,7 @@ export default function PostPreview({ postInfo, setSelectedPost }) {
             opacity: onHover ? 1 : 0,
             width: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
             height: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
-            borderRadius: '15px',
+            //borderRadius: '8px',
             display: 'flex',
             cursor: 'pointer',
           }}

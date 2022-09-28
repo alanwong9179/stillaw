@@ -78,11 +78,11 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<PostList />} />
-          <Route path="/home" element={<PostList />} />
+          <Route path="/home/:page" element={<PostList />} />
           <Route path="/article/:articleId" element={<Article />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/about" element={<About />} />
-          <Route path="/works" element={<Work />} />
+          <Route path="/archives" element={<Work />} />
           <Route path="*" element={<NotFound />}/>
         </Routes>
 

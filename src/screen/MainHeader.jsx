@@ -30,9 +30,9 @@ const RightLink = ({ locName, setHoverCheck, hoverCheck, setShowNav }) => {
     }, [hoverCheck])
 
     return (
-        <Box sx={{ fontFamily: "'Manrope', serif", fontWeight: isHovered ? 700 : 400 }} onMouseEnter={() => { setHoverCheck(locName) }} onMouseLeave={() => { setHoverCheck() }}>
+        <Box sx={{ fontFamily: "'Manrope', serif", fontWeight:  400 }} onMouseEnter={() => { setHoverCheck(locName) }} onMouseLeave={() => { setHoverCheck() }}>
 
-            {<Link style={{ textDecoration: 'none', color: blueGrey[isHovered ? 500 : 300] }} to={`/${locName.toUpperCase()}`} >
+            {<Link style={{ textDecoration: 'none', color: blueGrey[isHovered ? 500 : 300] }} to={locName === 'home' ? `/${locName}/1` : `/${locName}` } >
                 {locName.toUpperCase()}
             </Link>}
             <StyledDivider sx={{ backgroundColor: blueGrey[300], }} style={{ ...showBar }} />
@@ -75,7 +75,7 @@ export default function MainHeader() {
                     <Stack direction="row" spacing={2}>
                         <RightLink locName={"home"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} />
                         <RightLink locName={"about"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} />
-                        <RightLink locName={"works"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} />
+                        <RightLink locName={"archives"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} />
                     </Stack>
                 </Box>
 
@@ -95,7 +95,7 @@ export default function MainHeader() {
                 <AnimatedStack sx={{ textAlign: 'center', overflow: 'hidden' }} style={{ ...dropMenuProps }}>
                     <RightLink locName={"home"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
                     <RightLink locName={"about"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
-                    <RightLink locName={"works"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
+                    <RightLink locName={"archives"} setHoverCheck={setHoverCheck} hoverCheck={hoverCheck} setShowNav={setShowNav} />
                 </AnimatedStack>
             </Box>
         </Box>
