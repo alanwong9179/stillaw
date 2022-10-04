@@ -4,7 +4,7 @@ import PostPreview from '../component/PostPreview'
 import { getBlogs } from '../functions/selectDb'
 import PostDetailContainer from '../component/PostDetailContainer'
 import Pagination from "@mui/material/Pagination";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { useParams } from 'react-router-dom'
 
 export default function PostList() {
@@ -12,22 +12,30 @@ export default function PostList() {
   const [selectedPost, setSelectedPost] = useState('')
   const [pageCount, setPageCount] = useState(1)
   const { page } = useParams();
+  const loc = useLocation();
 
   /*get post list */
   useEffect(() => {
-    getBlogs().then(blogs => {
-      let page = 1
-      for (let b = 0; b < blogs.length; b++) {
-        if (b % 9 === 0 && b !== 0) {
-          page++
+    console.log(loc)
+    if (page === undefined) {
+      //navigate(`/home/1`);
+      window.location.href = window.location.href + 'home/1'
+    }else{
+      getBlogs().then(blogs => {
+        let pageApply = 1
+        for (let b = 0; b < blogs.length; b++) {
+          if (b % 9 === 0 && b !== 0) {
+            pageApply++
+          }
+          blogs[b].page = pageApply
         }
-        blogs[b].page = page
-      }
-      setPageCount(
-        parseInt((blogs.length / 9).toFixed(0))
-      )
-      setposts(blogs)
-    })
+        setPageCount(
+          parseInt((blogs.length / 9).toFixed(0))
+        )
+        setposts(blogs)
+      })
+    }
+
   }, [])
 
   return (

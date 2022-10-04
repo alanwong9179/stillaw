@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import MainHeader from "./screen/MainHeader";
 import PostList from "./screen/PostList";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import NotFound from "./screen/NotFound";
 import Article from "./screen/Article";
 import { useLocation } from "react-router-dom";
@@ -12,7 +12,6 @@ import { Admin } from "./screen/Admin";
 import About from "./screen/About";
 import useScrollDirection from "./functions/useScrollDirection";
 import Work from "./screen/Work";
-
 
 function App() {
   const currentRoute = useLocation().pathname;
