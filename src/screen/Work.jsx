@@ -6,6 +6,7 @@ import useBreakPoint from '../functions/useBreakPoint';
 import { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import ImageContainer from '../component/ImageContainer';
 
 
 function Work() {
@@ -42,15 +43,7 @@ function Work() {
         <ImageList variant="masonry" cols={cols} gap={10}>
           {itemData.map((item ,index) => (
             <ImageListItem key={index}>
-               <LazyLoadImage
-                style={{ objectFit: 'cover', borderRadius: '0px' }}
-                effect="blur"
-                height={'100%'}
-                width={'100%'}
-                src={[item.src]} />
-
-
-               
+              <ImageContainer src={item.src}/>
             </ImageListItem>
           ))}
         </ImageList>
