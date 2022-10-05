@@ -26,6 +26,7 @@
 <br>
 <br>
 > 安裝及設定 Oracle Client 11.2
+
 ##### 下載並解壓縮Oracle Client 11.2
  
 - Installation Type 選擇 `Administrator(1.04GB)`
