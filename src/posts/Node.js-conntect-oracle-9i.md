@@ -23,8 +23,7 @@
 
 #### 安裝及設定
 
-<br>
-<br>
+
 > 安裝及設定 Oracle Client 11.2
 
 ##### 下載並解壓縮Oracle Client 11.2
@@ -50,7 +49,7 @@ CONN =
 ```
 詳細`tnsnames.ora`的寫法也可參考 [Omiting tnsnames.ora](https://www.connectionstrings.com/oracle/)
 <br>
-<br>
+
 > 接通ODBC與Oracle 9i數據庫
 ##### 設定ODBC Client
 
@@ -59,8 +58,9 @@ CONN =
 回到系統資料來源名稱，建立新的資料來源，選擇`Oracle in OraClient1g_home1`。 之後跟著表格填上相應的資料後按`OK`
 
 現在，你的ODBC Client 已經成功連上Oracle 9i 數據庫。
+
 <br>
-<br>
+
 > 按通Node.js與ODBC的連線
 ##### 架設Node.js 與 ODBC Client 的連線
 
