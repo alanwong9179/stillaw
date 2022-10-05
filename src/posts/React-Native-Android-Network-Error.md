@@ -44,7 +44,7 @@ http://testingdomain.com/api/v1/getUser
 
 > 未SSL加密的 URL 會被封鎖
 
-我的URL header 正正是一沒有SSL加密的HTTP。
+我的URL header 正正是沒有SSL加密的HTTP。
 在Android API Level 28 (Android 9)及之後，HTTP的URL Request會被自動封鎖，因此，我們需要告訴系統不要封鎖非SSL加密的Request。
 
 
@@ -52,7 +52,7 @@ http://testingdomain.com/api/v1/getUser
 
 > Android
 
-打開 android/app/src/main/AndroidManifrest.xml，將 android:usesCleartextTraffic="true" 加入activity 即可。
+打開 `android/app/src/main/AndroidManifrest.xml`，將 `android:usesCleartextTraffic="true"` 加入 `<activity>` 即可。
 
 ```html
 <activity
@@ -64,7 +64,5 @@ android:usesCleartextTraffic="true"
     </intent-filter>
 </activity>
 ```
-
-
 
 
