@@ -1,6 +1,6 @@
-# React Native 在 Android Call API 時一直顯示連線錯誤的三個可能解法。
+## React Native 在 Android Call API 時一直顯示連線錯誤的三個可能解法。
 ---
-#### 遇上的問題
+### 遇上的問題
 在Metro上測試一切正常，當output成.apk並安裝到手機上，所有call api的功能全部顯示為網絡錯誤。
 起初以為是Axios跟RN的版本不相容引致錯誤。但之後轉用Fetch也是不能成功接通api，一直catch到network error。
 
@@ -15,7 +15,8 @@ await axios.get('http://testingdomain.com/api/v1/getUser').then(user => {
 })
 ``` 
 
-#### 成因
+
+### 成因
 在網上看了一番，造成問題的因素大約有三個。
 + API 的 domain 寫成了 localhost
 + 忘記加入 http / https 
@@ -48,7 +49,7 @@ http://testingdomain.com/api/v1/getUser
 在Android API Level 28 (Android 9)及之後，HTTP的URL Request會被自動封鎖，因此，我們需要告訴系統不要封鎖非SSL加密的Request。
 
 
-#### 方法
+### 方法
 
 > Android
 

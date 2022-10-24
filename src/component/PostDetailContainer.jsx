@@ -5,18 +5,19 @@ import Article from '../screen/Article';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 import { getPostDetails } from '../functions/selectDb';
+import raw from 'raw.macro'
 
 export default function PostDetailContainer({ selectedPost, setSelectedPost }) {
 
-
   const AnimatedBox = animated(Box)
   const [showup, setShowup] = useState(false)
-  const [postDetails, setPostDetails] = useState([])
+  const [postDetails, setPostDetails] = useState({})
+  const [mdContent, setMdContent] = useState('')
 
   useEffect(() => {
     if (selectedPost !== '' ) {
       document.body.style.overflow = "hidden"
-      setShowup(true)
+      loadPost()
     }else{
       document.body.style.overflow = "auto"
       setShowup(false)
@@ -24,12 +25,15 @@ export default function PostDetailContainer({ selectedPost, setSelectedPost }) {
     }
   }, [selectedPost])
 
-  useEffect(() => {
-    showup &&
+  const loadPost = () => {
     getPostDetails(selectedPost).then(pDetail => {
       setPostDetails(pDetail)
+      let name = pDetail.key
+      setMdContent(raw(`../posts/${name}.md`))
+      setShowup(true)
+     
     })
-  },[showup])
+  }
 
   const transitions = useTransition(showup, {
     from: { opacity: 0 ,y: 300},
@@ -68,7 +72,7 @@ export default function PostDetailContainer({ selectedPost, setSelectedPost }) {
             <Box sx={{ backgroundColor: '#ffffff' , flex:'9', overflowY: 'scroll'}}>
               {
                 postDetails.length !== 0 &&
-                <Article postDetail={postDetails}/>
+                <Article postDetail={postDetails} mdContent={mdContent}/>
               }
 
             </Box>

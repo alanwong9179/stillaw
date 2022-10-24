@@ -1,18 +1,20 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react'
+import React , {useEffect, useState}from 'react'
 import { blueGrey } from "@mui/material/colors"
 import moment from 'moment';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import '../css/md.css'
 
-
-export default function Article({postDetail}) {
+export default function Article({postDetail, mdContent}) {
   //let { articleId } = useParams();
-  const {content, tag, title, time} = postDetail
+  console.log(mdContent)
 
-  return (
+  const {time, key} = postDetail
+
+ return (
       <Box>
       <Box
         sx={{textAlign:'center' }}
@@ -22,11 +24,11 @@ export default function Article({postDetail}) {
         <Box
           mt={'10px'}
         >
-          <Box >
+    {      /*<Box >
           <Typography variant="h3" component="div" gutterBottom sx={{ fontFamily: "'Manrope', serif", fontSize: '2.5rem', fontWeight: 600, color: blueGrey[800], }}>
             {title}
           </Typography>
-          </Box>
+  </Box>*/}
           <Box>
           <Typography variant="h6" component="div" gutterBottom sx={{ fontFamily: "'EB Garamond', serif", color: blueGrey[800], mt: 1 }}>
             Posted on {moment(time.seconds*1000).format('YYYY-MM-DD')}
@@ -34,9 +36,10 @@ export default function Article({postDetail}) {
 
           </Box>
         </Box>
+        <Box textAlign={'left'}>
 
         <ReactMarkdown
-        children={content}
+        children={mdContent}
         remarkPlugins={[remarkGfm]}
         components={{
           code({ node, inline, className, children, ...props }) {
@@ -44,7 +47,7 @@ export default function Article({postDetail}) {
             return !inline && match ? (
               <SyntaxHighlighter
                 children={String(children).replace(/\n$/, '')}
-                style={nord}
+                style={xonokai}
                 language={match[1]}
                 PreTag="div"
                 {...props}
@@ -58,6 +61,8 @@ export default function Article({postDetail}) {
           img:({node,...props})=><img style={{maxWidth:'100%', }}{...props}/>
         }}
       />
+        </Box>
+
 
       </Box>
 
