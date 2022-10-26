@@ -2,16 +2,15 @@ import { doc, setDoc } from "firebase/firestore";
 import { fireStoreDB } from "./fireBaseSetting";
 import moment from "moment";
 
-export async function writeNewBlog(blogId, content, img, tag, title){
+export async function writeNewBlog(blogId, img, tag, key){
 
     let result;
 
     await setDoc(doc(fireStoreDB, "blogs", `${blogId}`), {
-        content: content,
-        title: title,
         imgUrl: img,
         tag: tag,
-        time: new Date()
+        time: new Date(),
+        key: key
     }).then(()=> {
         result = true
     }).catch(err =>{

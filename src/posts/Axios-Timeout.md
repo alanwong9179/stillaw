@@ -8,12 +8,58 @@ Axios 的詳細用法可以按[這里](https://github.com/axios/axios)了解更�
 
 然而，Axios 本身官方有提供一個名叫 ```cancelToken``` 的參數供用戶強制中斷請求。
 
-是次的例子環境為 ```React Native```
 
-先用NetInfo插件檢查網絡狀況，如果異常則直接跳錯誤了。
+<br></br>
 
-##### 安裝NetInfo 
+
+是次的例子環境為 ```React Native```, 先用NetInfo插件檢查網絡狀況。
 
 ```js
 npm install @react-native-community/netinfo
 ```
+
+
+```js
+NetInfo.fetch().then(async state => {
+ if(!state.isConnected){
+   // not network
+   return
+ }else{
+  await axios.post(`https://xxxx/api/xxx`,
+  {user:'Alan'})
+    .then(response => {
+     //normal flow
+   }).catch((error) => {
+     //error
+   })
+ }
+})
+```
+
+### 定義一個 `CancelToken`
+```js
+const CancelToken = axios.CancelToken;
+```
+### NetInfo檢查完後加入 setTimeout，今次例子為三秒。
+```js
+setTimeout(() => {
+  cancelSource.current.cancel()
+}, 3000)
+```
+### 在請求串中加入 cancelToken 指令
+```js
+ await axios.post(`https://xxxx/api/xxx`,
+  {user:'Alan'},
+  { cancelToken: cancelSource.current.token} // <-- right here
+  )
+    .then(response => {
+     //normal flow
+   }).catch((error) => {
+     //error
+   })
+```
+### 如此一來，如果限時內Axios沒有回應，就會跳Catch。
+<br></br>
+
+## 注意
+此操作對於backend的checking功能比較嚴謹。
