@@ -6,19 +6,17 @@ import PostDetailContainer from '../component/PostDetailContainer'
 import Pagination from "@mui/material/Pagination";
 import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import { useParams } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 export default function PostList() {
   const [posts, setposts] = useState([]);
-  const [selectedPost, setSelectedPost] = useState('')
   const [pageCount, setPageCount] = useState(1)
   const { page } = useParams();
   const loc = useLocation();
 
   /*get post list */
   useEffect(() => {
-    console.log(loc)
     if (page === undefined) {
-      //navigate(`/home/1`);
       window.location.href = window.location.href + 'home/1'
     }else{
       getBlogs().then(blogs => {
@@ -39,21 +37,21 @@ export default function PostList() {
   }, [])
 
   return (
-    <>
-      <Grid container rowSpacing={4} justifyContent={"left"} pt={1} >
+    <motion.div key="postlistpage" initial={{ opacity: 0}} animate={{ opacity: 1}} exit={{ opacity: 0}}  transition={{ duration: 0.8 }}>
+      <Grid container rowSpacing={4} justifyContent={"left"} pt={1} spacing={5}>
         {
           posts.length > 0 &&
           posts.map((i, index) => (
             i.page.toString() === (page || 1 ) &&
             <Grid key={index} item sx={{ textAlign: 'center' }} xs={12} sm={12} md={6} lg={4} xl={4}>
-              <PostPreview postInfo={i} setSelectedPost={setSelectedPost} />
+              <PostPreview postInfo={i} />
             </Grid>
           ))
         }
       </Grid>
     
       {
-         posts.length > 0 &&
+         page > 1 &&
          <Pagination
          sx={{
            'ul': {
@@ -65,8 +63,7 @@ export default function PostList() {
          count={pageCount} shape="rounded" page={parseInt(page)} />
 
       }
-       <PostDetailContainer selectedPost={selectedPost} setSelectedPost={setSelectedPost} />
-    </>
+    </motion.div>
 
   )
 }

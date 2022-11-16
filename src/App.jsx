@@ -12,6 +12,7 @@ import { Admin } from "./screen/Admin";
 import About from "./screen/About";
 import useScrollDirection from "./functions/useScrollDirection";
 import Work from "./screen/Work";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   const currentRoute = useLocation().pathname;
@@ -19,6 +20,7 @@ function App() {
   const adminPage = currentRoute.includes("admin")
 
   const AnimatedBox = animated(Box);
+  const location = useLocation();
 
   const scrollDirection = useScrollDirection()
   /*animation*/
@@ -75,15 +77,18 @@ function App() {
         pr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         minHeight='83vh'
       >
-        <Routes>
-          <Route path="/" element={<PostList />} />
-          <Route path="/home/:page" element={<PostList />} />
-          <Route path="/article/:articleId" element={<Article />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/archives" element={<Work />} />
-          <Route path="*" element={<NotFound />}/>
-        </Routes>
+        <AnimatePresence exitBeforeEnter>
+          <Routes key={location.pathname} location={location}>
+            <Route path="/" element={<PostList />} />
+            <Route path="/home/:page" element={<PostList />} />
+            <Route path="/article/:articleId" element={<Article />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/archives" element={<Work />} />
+            <Route path="*" element={<NotFound />}/>
+          </Routes>
+        </AnimatePresence>
+     
 
       </Box>
       <Box

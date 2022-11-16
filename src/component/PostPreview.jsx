@@ -10,7 +10,7 @@ import { Skeleton } from '@mui/material'
 import { useSpring, animated } from '@react-spring/web'
 
 
-export default function PostPreview({ postInfo, setSelectedPost }) {
+export default function PostPreview({ postInfo, }) {
 
   const [onHover, setOnHover] = useState(false)
   const [loaded, setLoaded] = useState(false)
@@ -30,10 +30,8 @@ export default function PostPreview({ postInfo, setSelectedPost }) {
             width: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
             height: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
             backgroundColor: blueGrey[50],
-           // borderRadius: '8px'
-          }}
-         
-        >
+            // borderRadius: '8px'
+          }}>
           <LazyLoadImage
             style={{ objectFit: 'cover', borderRadius: '0px' }}
             effect="blur"
@@ -46,7 +44,7 @@ export default function PostPreview({ postInfo, setSelectedPost }) {
           onMouseEnter={() => { setOnHover(true) }}
           onMouseLeave={() => { setOnHover(false) }}
           onClick={() => {
-            setSelectedPost(postInfo.id)
+            goToPost(postInfo.id)
           }}
           sx={{
             background: 'linear-gradient(0deg, rgba(33,33,33,0.552280287114846) 0%, rgba(255,255,255,0) 50%)',
@@ -61,8 +59,7 @@ export default function PostPreview({ postInfo, setSelectedPost }) {
             //borderRadius: '8px',
             display: 'flex',
             cursor: 'pointer',
-          }}
-        >
+          }}>
           <Box
             sx={{
               alignSelf: 'flex-end',
@@ -72,8 +69,7 @@ export default function PostPreview({ postInfo, setSelectedPost }) {
               fontSize: '15px',
               color: '#FFF',
               fontFamily: "'Manrope', serif",
-            }}
-          >
+            }}>
             MORE
           </Box>
         </Box>
@@ -89,13 +85,13 @@ export default function PostPreview({ postInfo, setSelectedPost }) {
       {
         loaded ?
           <>
-            <Box mt={1} sx={{ fontFamily: "'Manrope', serif",}} >
+            <Box mt={1} sx={{ fontFamily: "'Manrope', serif", lineHeight: '1.5rem',height: '3rem', overflow:'hidden' }} >
               {postInfo.title}
             </Box>
             <Box mt={1} sx={{ textAlign: '-webkit-center' }}>
               <hr style={{ width: '10%' }}></hr>
             </Box>
-            <Box mt={1} sx={{ fontFamily: "'Manrope', serif", color: blueGrey[600], fontSize: '0.8rem' }}>
+            <Box mt={1} sx={{ fontFamily: "'Manrope', serif", color: blueGrey[600], fontSize: '0.8rem', }}>
               {(postInfo.date)}
             </Box>
           </>

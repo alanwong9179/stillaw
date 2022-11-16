@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react(),
   macrosPlugin()
   ],
+  server: {port: 6050}
 
 
  // server:{host: '192.168.50.2',}

@@ -14,7 +14,7 @@
     "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.10.5",
     "firebase": "^9.9.2",
-    "framer-motion": "^7.5.2",
+    "framer-motion": "^7.6.7",
     "html-to-react": "^1.5.0",
     "moment": "^2.29.4",
     "raw.macro": "^0.6.2",
