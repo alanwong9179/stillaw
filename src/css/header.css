@@ -1,0 +1,17 @@
+.header {
+    position: sticky;
+    top: 0px;
+    background-color: #BFDBFE;
+    height: 6rem;
+    transition-property: all; 
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 500ms;
+  }
+  
+  .header.down {
+    top: -6rem;
+  }
+
+  .header.show{
+    top: 6rem;
+  }

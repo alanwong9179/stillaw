@@ -1,0 +1,15 @@
+blockquote {
+  color: #666;
+  margin: 0;
+  padding-left: 3em;
+  border-left: 0.5em #eee solid;
+}
+
+code {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+h1 {
+  line-height: normal;
+}
