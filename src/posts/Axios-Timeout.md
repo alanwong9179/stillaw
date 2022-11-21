@@ -9,8 +9,6 @@ Axios 的詳細用法可以按[這里](https://github.com/axios/axios)了解更�
 然而，Axios 本身官方有提供一個名叫 ```cancelToken``` 的參數供用戶強制中斷請求。
 
 
-<br></br>
-
 
 是次的例子環境為 ```React Native```, 先用NetInfo插件檢查網絡狀況。
 
@@ -59,7 +57,6 @@ setTimeout(() => {
    })
 ```
 ### 如此一來，如果限時內Axios沒有回應，就會跳Catch。
-<br></br>
 
 ## 注意
 此操作對於backend的checking功能比較嚴謹。

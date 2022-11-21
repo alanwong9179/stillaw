@@ -1,12 +1,16 @@
 import { storage } from "./fireBaseSetting";
 import { ref, getDownloadURL } from "firebase/storage";
 
-export default function getMd(){
+export default async function getMd(name) {
+  const pathReference = ref(storage, `Blogs/${name}.md`);
+  let markdownTxt = "";
+  await getDownloadURL(pathReference).then(async (url) => {
+    await fetch(url, { mode: "cors" })
+      .then((res) => res.text())
+      .then((result) => {
+        markdownTxt = result;
+      });
+  });
 
-    const pathReference = ref(storage, 'markdown_blogs/jcenter.md')
-    getDownloadURL(pathReference).then(url => {
-        
-    })
-
-
+  return markdownTxt;
 }

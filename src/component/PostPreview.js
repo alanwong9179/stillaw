@@ -8,12 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import PostTag from './PostTag';
 import { Skeleton } from '@mui/material'
 import { useSpring, animated } from '@react-spring/web'
+import useMeasure from 'react-use-measure'
 
 
 export default function PostPreview({ postInfo }) {
 
   const [onHover, setOnHover] = useState(false)
   const [loaded, setLoaded] = useState(false)
+
+  const [imageRef, imageBounds] = useMeasure()
 
   const navigate = useNavigate();
   const goToPost = (id) => {
@@ -26,14 +29,15 @@ export default function PostPreview({ postInfo }) {
     <Box>
       <Box sx={{ textAlign: '-webkit-center', position: 'relative' }} >
         <Box
+          ref={imageRef}
           sx={{
-            width: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
-            height: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
-            backgroundColor: blueGrey[50],
+            width:'100%',
+            height:'100%',
+
             // borderRadius: '8px'
           }}>
           <LazyLoadImage
-            style={{ objectFit: 'cover', borderRadius: '0px' }}
+            style={{ objectFit: 'cover', borderRadius: '0px', aspectRatio:'1/1'}}
             effect="blur"
             height={'100%'}
             width={'100%'}
@@ -54,8 +58,8 @@ export default function PostPreview({ postInfo }) {
             transform: 'translate(-50%, -50%)',
             transition: 'opacity 1s',
             opacity: onHover ? 1 : 0,
-            width: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
-            height: { xl: 350, lg: 300, md: 300, sm: 320, xs: 280 },
+            width: imageBounds.width,
+            height: imageBounds.height - 8,
             //borderRadius: '8px',
             display: 'flex',
             cursor: 'pointer',
@@ -66,8 +70,10 @@ export default function PostPreview({ postInfo }) {
               width: '100%',
               textAlign: 'right',
               paddingRight: '10px',
-              fontSize: '15px',
-              color: '#FFF'
+              fontSize: '20px',
+              color: '#FFF',
+              paddingBottom: 2,
+              fontWeight:'bolder'
             }}>
             MORE
           </Box>
