@@ -1,11 +1,15 @@
-blockquote {
+.md {
+  color: #333
+}
+
+.md blockquote {
   color: #666;
   margin: 0;
   padding-left: 3em;
   border-left: 0.5em #eee solid;
 }
 
-code {
+.md code {
   background: #2a2a2a;
   color: #ffffff;
   padding: 1px 5px;
@@ -13,6 +17,34 @@ code {
   border-radius: 4px;
 }
 
-h1 {
+.md h1 {
   line-height: normal;
+  font-weight: 600;
 }
+
+.md h2 {
+  font-weight: 600;
+}
+
+.md h3 {
+  font-weight: 600;
+}
+
+.md hr {
+  height: 4px;
+  margin: 32px 0;
+  background-color: #d6d6d6;
+  border: 0 none;
+}
+
+.md h4 {
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+.md h5{
+  font-size: 1em;
+  font-weight: 600; 
+}
+
+

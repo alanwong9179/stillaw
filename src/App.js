@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import MainHeader from "./component/MainHeader";
-import BlogDetail from "./screen/BlogDetail";
+import { blueGrey } from "@mui/material/colors";
 import { AnimatePresence } from "framer-motion";
 import { Routes, Route, useLocation } from "react-router-dom";
 import PostList from "./screen/PostList";
@@ -15,10 +15,12 @@ function App() {
   const location = useLocation();
   const scroll = useScrollDirection();
 
-  console.log(scroll)
+  const showFooter = ["article", "home"].some((loc) =>
+    location.pathname.includes(loc)
+  );
 
   return (
-    <Box >
+    <Box>
       <motion.div
         style={{
           zIndex: 10,
@@ -59,7 +61,25 @@ function App() {
         </AnimatePresence>
       </Box>
 
-  
+      {showFooter && (
+        <Box
+          sx={{
+            textAlign: "center",
+            mt: 15,
+            color: "#FFF",
+
+            backgroundColor: blueGrey[400],
+            width: "100%",
+          }}
+        >
+          <Box
+            p={2}
+            sx={{ fontSize: { xs: "0.3rem", sm: "0.3rem", md: "0.8rem" } }}
+          >
+            Copyright © 2022 Still.aw . All Rights Reserved
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 }

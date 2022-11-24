@@ -11,8 +11,10 @@ import { useParams } from "react-router-dom";
 import { getPostDetails } from "../functions/selectDb";
 import { motion } from "framer-motion";
 import Skeleton from "@mui/material/Skeleton";
-
 import getMd from "../functions/selectMd";
+import rehypeRaw from "rehype-raw";
+import Lottie from "react-lottie-player";
+import loadingdot from '../animation/loadingdot.json'
 
 export default function Article() {
   let { articleId } = useParams();
@@ -27,16 +29,18 @@ export default function Article() {
         setMdContent(md);
       });
     });
+    window.scrollTo(0, 0)
+
   }, []);
 
   return mdContent === "" ? (
     <Box width="100%" sx={{ display: "flex", textAlign: "-webkit-center" }}>
       <Box sx={{ flex: 1, mt: "10%" }}>
-        <Skeleton
-          variant="rounded"
-          width={200}
-          height={200}
-          style={{ flex: 1 }}
+          <Lottie
+          loop
+          animationData={loadingdot}
+          play
+          style={{ width: 150, height: 150 }}
         />
       </Box>
     </Box>
@@ -54,27 +58,24 @@ export default function Article() {
         mr={{ xl: 15, lg: 10, md: 5, sm: 2, xs: 0 }}
       >
         <Box mt={"10px"}>
-          <Box>
-            <Typography
-              variant="h6"
-              component="div"
-              gutterBottom
-              sx={{
-                fontFamily: "'EB Garamond', serif",
-                color: blueGrey[800],
-                mt: 1,
-              }}
-            >
-              {postDetails.time !== undefined &&
-                `Posted on ${moment
-                  .unix(postDetails.time.seconds)
-                  .format("YYYY-MM-DD HH:mm:ss")}`}
-            </Typography>
+          <Box
+            sx={{
+              textAlign: "left",
+              color: blueGrey[800],
+              mt: 1,
+              fontWeight: "900",
+            }}
+          >
+            {postDetails.time !== undefined &&
+              `Posted on ${moment
+                .unix(postDetails.time.seconds)
+                .format("YYYY-MM-DD HH:mm:ss")}`}
           </Box>
         </Box>
-        <Box textAlign={"left"}>
+        <Box textAlign={"left"} className="md">
           <ReactMarkdown
             children={mdContent}
+            rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]}
             components={{
               code({ node, inline, className, children, ...props }) {
@@ -101,9 +102,6 @@ export default function Article() {
         </Box>
       </Box>
 
-      <Box sx={{textAlign:'center', mt: 15, mb:3, fontSize: {sm:'0.5rem', md: '0.8rem'}}}>
-        <Box>Copyright © 2022 Still.aw . All Rights Reserved</Box>
-      </Box>
     </motion.div>
   );
 }

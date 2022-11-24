@@ -29,7 +29,7 @@ const RightLink = ({ locName, setHoverCheck, hoverCheck, setShowNav }) => {
 
   return (
     <Box
-      sx={{ fontWeight: 400 }}
+      sx={{ fontWeight: 400, mt: {xs: 1, sm: 1, md: 1, lg: 0, xl: 0} }}
       onMouseEnter={() => {
         setHoverCheck(locName);
       }}
@@ -71,7 +71,7 @@ export default function MainHeader() {
 
   const AnimatedStack = animated(Stack);
   const dropMenuProps = useSpring({
-    height: showNav ? 75 : 0,
+    height: showNav ? 80 : 0,
     opacity: showNav ? 1 : 0,
     config: { friction: 18 },
   });
