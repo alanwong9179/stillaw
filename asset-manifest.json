@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/stillaw/static/css/main.50da68da.css",
-    "main.js": "/stillaw/static/js/main.e4c98a50.js",
+    "main.js": "/stillaw/static/js/main.f0947b5e.js",
     "static/js/787.3d80c087.chunk.js": "/stillaw/static/js/787.3d80c087.chunk.js",
     "index.html": "/stillaw/index.html",
     "main.50da68da.css.map": "/stillaw/static/css/main.50da68da.css.map",
-    "main.e4c98a50.js.map": "/stillaw/static/js/main.e4c98a50.js.map",
+    "main.f0947b5e.js.map": "/stillaw/static/js/main.f0947b5e.js.map",
     "787.3d80c087.chunk.js.map": "/stillaw/static/js/787.3d80c087.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.50da68da.css",
-    "static/js/main.e4c98a50.js"
+    "static/js/main.f0947b5e.js"
   ]
 }
