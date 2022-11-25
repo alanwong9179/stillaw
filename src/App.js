@@ -1,4 +1,3 @@
-import { useState, useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import MainHeader from "./component/MainHeader";
 import { blueGrey } from "@mui/material/colors";
@@ -9,15 +8,21 @@ import Article from "./screen/Article";
 import { motion } from "framer-motion";
 import useScrollDirection from "./functions/useScrollDirection";
 import Tutor from "./screen/Tutor";
+import About from "./screen/About";
 import Admin from "./screen/Admin";
+import useMeasure from "react-use-measure";
+import NotFound from "./screen/NotFound";
 
 function App() {
   const location = useLocation();
   const scroll = useScrollDirection();
 
-  const showFooter = ["article", "home"].some((loc) =>
+  const [footerRef, footerBounds] = useMeasure()
+
+  const showFooter = ["article", "home", "about"].some((loc) =>
     location.pathname.includes(loc)
   );
+
 
   return (
     <Box>
@@ -47,25 +52,30 @@ function App() {
       <Box
         pl={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         pr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
-        minHeight="83vh"
+        sx={{minHeight: `calc(100vh - ${footerBounds.height}px - 84px)`}}
+   
       >
         <AnimatePresence exitBeforeEnter>
           <Routes key={location.pathname} location={location}>
             <Route path="/" element={<PostList />} />
+            <Route path="/home" element={<PostList />} />
             <Route path="/home/:page" element={<PostList />} />
             <Route path="/article/:articleId" element={<Article />} />
+            <Route path="/about" element={<About />} />
 
             <Route path="/admin" element={<Admin />} />
             <Route path="/tutor" element={<Tutor />} />
+
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </AnimatePresence>
       </Box>
 
       {showFooter && (
         <Box
+          ref={footerRef}
           sx={{
             textAlign: "center",
-            mt: 15,
             color: "#FFF",
 
             backgroundColor: blueGrey[400],

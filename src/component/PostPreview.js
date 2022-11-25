@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PostTag from "./PostTag";
 import { Skeleton } from "@mui/material";
-import { useSpring, animated } from "@react-spring/web";
 import useMeasure from "react-use-measure";
 
 export default function PostPreview({ postInfo }) {

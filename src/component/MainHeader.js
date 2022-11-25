@@ -29,7 +29,7 @@ const RightLink = ({ locName, setHoverCheck, hoverCheck, setShowNav }) => {
 
   return (
     <Box
-      sx={{ fontWeight: 400, mt: {xs: 1, sm: 1, md: 1, lg: 0, xl: 0} }}
+      sx={{ fontWeight: 400, mt: {xs: 1, sm: 1, md: 0, lg: 0, xl: 0} }}
       onMouseEnter={() => {
         setHoverCheck(locName);
       }}
@@ -107,11 +107,16 @@ export default function MainHeader() {
               setHoverCheck={setHoverCheck}
               hoverCheck={hoverCheck}
             />
-            <RightLink
+            {
+              /*
+                 <RightLink
               locName={"archives"}
               setHoverCheck={setHoverCheck}
               hoverCheck={hoverCheck}
             />
+              */
+            }
+         
           </Stack>
         </Box>
 
@@ -163,12 +168,17 @@ export default function MainHeader() {
             hoverCheck={hoverCheck}
             setShowNav={setShowNav}
           />
-          <RightLink
+          {
+            /*
+                <RightLink
             locName={"archives"}
             setHoverCheck={setHoverCheck}
             hoverCheck={hoverCheck}
             setShowNav={setShowNav}
           />
+            */
+          }
+      
         </AnimatedStack>
       </Box>
     </Box>

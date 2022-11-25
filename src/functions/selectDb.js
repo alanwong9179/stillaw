@@ -1,5 +1,5 @@
 import { fireStoreDB } from "./fireBaseSetting";
-import { collection, getDocs, query, where, getDoc, doc} from "firebase/firestore"; 
+import { collection, getDocs, getDoc, doc} from "firebase/firestore"; 
 import moment from "moment";
 
 export async function getBlogs(){

@@ -1,6 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
 import { fireStoreDB } from "./fireBaseSetting";
-import moment from "moment";
 
 export async function writeNewBlog(blogId, coverImgUrl, tag, key, title){
 

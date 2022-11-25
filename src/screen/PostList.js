@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import PostPreview from '../component/PostPreview'
 import { getBlogs } from '../functions/selectDb'
 import Pagination from "@mui/material/Pagination";
-import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
@@ -11,7 +11,6 @@ export default function PostList() {
   const [posts, setposts] = useState([]);
   const [pageCount, setPageCount] = useState(1)
   const { page } = useParams();
-  const loc = useLocation();
 
   /*get post list */
   useEffect(() => {
@@ -32,11 +31,10 @@ export default function PostList() {
         setposts(blogs)
       })
     }
-
   }, [])
 
   return (
-    <motion.div key="postlistpage" initial={{ opacity: 0}} animate={{ opacity: 1}} exit={{ opacity: 0}}  transition={{ duration: 0.8 }}>
+    <motion.div key="postlistpage" initial={{ opacity: 0}} animate={{ opacity: 1}} exit={{ opacity: 0}}  transition={{ duration: 0.8 }} style={{marginBottom: 40}}>
       <Grid container rowSpacing={4} justifyContent={"left"} pt={1} spacing={5}>
         {
           posts.length > 0 &&
@@ -48,7 +46,6 @@ export default function PostList() {
           ))
         }
       </Grid>
-    
       {
          page > 1 &&
          <Pagination
@@ -59,7 +56,6 @@ export default function PostList() {
            mt: 5
          }}
          count={pageCount} shape="rounded" page={parseInt(page)} />
-
       }
     </motion.div>
 

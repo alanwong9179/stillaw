@@ -1,7 +1,6 @@
 import { Box } from '@mui/system'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { writeNewBlog } from '../functions/insertDb'
-import getMd from '../functions/selectMd'
 
 export default function Admin() {
     const [info, setInfo] = useState({blogId: '', coverImageUrl: '', tag: '', key: '', title: ''})

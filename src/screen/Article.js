@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { blueGrey } from "@mui/material/colors";
 import moment from "moment";
@@ -10,7 +10,6 @@ import "../css/md.css";
 import { useParams } from "react-router-dom";
 import { getPostDetails } from "../functions/selectDb";
 import { motion } from "framer-motion";
-import Skeleton from "@mui/material/Skeleton";
 import getMd from "../functions/selectMd";
 import rehypeRaw from "rehype-raw";
 import Lottie from "react-lottie-player";
@@ -95,7 +94,7 @@ export default function Article() {
                 );
               },
               img: ({ node, ...props }) => (
-                <img style={{ maxWidth: "100%" }} {...props} />
+                <img alt={"alt"} style={{ maxWidth: "100%" }} {...props} />
               ),
             }}
           />
