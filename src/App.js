@@ -59,7 +59,7 @@ function App() {
           <Routes key={location.pathname} location={location}>
             <Route path="/" element={<PostList />} />
             <Route path="/home" element={<PostList />} />
-            <Route path="/home/:page" element={<PostList />} />
+            <Route path="/stillaw" element={<PostList />} />
             <Route path="/article/:articleId" element={<Article />} />
             <Route path="/about" element={<About />} />
 

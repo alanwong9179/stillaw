@@ -10,13 +10,12 @@ import { motion } from 'framer-motion'
 export default function PostList() {
   const [posts, setposts] = useState([]);
   const [pageCount, setPageCount] = useState(1)
-  const { page } = useParams();
+  const [page, setPage] = useState(1)
+  //const { page } = useParams();
 
   /*get post list */
   useEffect(() => {
-    if (page === undefined) {
-      window.location.href = window.location.href + 'home/1'
-    }else{
+
       getBlogs().then(blogs => {
         let pageApply = 1
         for (let b = 0; b < blogs.length; b++) {
@@ -30,7 +29,6 @@ export default function PostList() {
         )
         setposts(blogs)
       })
-    }
   }, [])
 
   return (
