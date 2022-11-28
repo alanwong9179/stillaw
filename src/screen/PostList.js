@@ -27,6 +27,7 @@ export default function PostList() {
         setPageCount(
           parseInt((blogs.length / 9).toFixed(0))
         )
+        console.log(blogs)
         setposts(blogs)
       })
   }, [])
@@ -37,7 +38,7 @@ export default function PostList() {
         {
           posts.length > 0 &&
           posts.map((i, index) => (
-            i.page.toString() === (page || 1 ) &&
+            i.page === (page || 1 ) &&
             <Grid key={index} item sx={{ textAlign: 'center' }} xs={12} sm={12} md={6} lg={4} xl={4}>
               <PostPreview postInfo={i} />
             </Grid>

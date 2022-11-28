@@ -43,7 +43,7 @@ const RightLink = ({ locName, setHoverCheck, hoverCheck, setShowNav }) => {
             textDecoration: "none",
             color: blueGrey[isHovered ? 500 : 300],
           }}
-          to={locName === "home" ? `/${locName}/1` : `/${locName}`}
+          to={locName}
         >
           {locName.toUpperCase()}
         </Link>
