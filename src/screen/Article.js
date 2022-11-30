@@ -5,12 +5,12 @@ import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { xonokai } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { twilight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "../css/md.css";
 import { useParams } from "react-router-dom";
 import { getPostDetails } from "../functions/selectDb";
 import { motion } from "framer-motion";
-import getMd from "../functions/selectMd";
+import {getMd} from "../functions/selectMd";
 import rehypeRaw from "rehype-raw";
 import Lottie from "react-lottie-player";
 import loadingdot from '../animation/loadingdot.json'
@@ -82,7 +82,7 @@ export default function Article() {
                 return !inline && match ? (
                   <SyntaxHighlighter
                     children={String(children).replace(/\n$/, "")}
-                    style={xonokai}
+                    style={twilight}
                     language={match[1]}
                     PreTag="div"
                     {...props}

@@ -21,3 +21,23 @@ export async function writeNewBlog(blogId, coverImgUrl, tag, key, title){
     return result 
 }
 
+export async function writeNewMurmur(blogId, coverImgUrl, tag, key, title){
+
+    let result;
+
+    await setDoc(doc(fireStoreDB, "MurMur", `${blogId}`), {
+        imgUrl: coverImgUrl,
+        tag: tag,
+        time: new Date(),
+        key: key,
+        title: title
+    }).then(()=> {
+        result = true
+    }).catch(err =>{
+        console.log(err)
+        result = false
+    })
+
+    return result 
+}
+

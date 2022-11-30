@@ -1,7 +1,7 @@
 import { storage } from "./fireBaseSetting";
 import { ref, getDownloadURL } from "firebase/storage";
 
-export default async function getMd(name) {
+export async function getMd(name) {
   const pathReference = ref(storage, `Blogs/${name}.md`);
   let markdownTxt = "";
   await getDownloadURL(pathReference).then(async (url) => {
@@ -13,4 +13,9 @@ export default async function getMd(name) {
   });
 
   return markdownTxt;
+}
+
+export async function getImageLink(path){
+  const pathReference = ref(storage, path);
+  return await getDownloadURL(pathReference)
 }

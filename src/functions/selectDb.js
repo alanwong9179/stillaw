@@ -43,7 +43,6 @@ export async function getPostDetails(postId){
 export async function getLastestBlogId(){
 
     let currPostId = 0
-
     try{
         const querySnapshot = await getDocs(collection(fireStoreDB, "blogs"));
         querySnapshot.forEach((doc) => {
@@ -51,12 +50,26 @@ export async function getLastestBlogId(){
                 currPostId = parseInt(doc.id)
             } 
         });
-
     }catch(error){
         alert("Error in get blog ig: " + error)
     }
-
     return currPostId
 }
 
 
+
+export async function getMurId(){
+
+    let currPostId = 0
+    try{
+        const querySnapshot = await getDocs(collection(fireStoreDB, "murmur"));
+        querySnapshot.forEach((doc) => {
+            if (parseInt(doc.id) > currPostId ){
+                currPostId = parseInt(doc.id)
+            } 
+        });
+    }catch(error){
+        alert("Error in get blog ig: " + error)
+    }
+    return currPostId
+}

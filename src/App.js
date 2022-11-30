@@ -23,6 +23,7 @@ function App() {
     location.pathname.includes(loc)
   );
 
+  const hideHeader = location.pathname.includes("admin")
 
   return (
     <Box>
@@ -45,7 +46,8 @@ function App() {
           pl={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
           pr={{ xl: 40, lg: 20, md: 20, sm: 15, xs: 5 }}
         >
-          <MainHeader />
+          {!hideHeader && <MainHeader />}
+       
         </Box>
       </motion.div>
 
