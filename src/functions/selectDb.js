@@ -2,11 +2,13 @@ import { fireStoreDB } from "./fireBaseSetting";
 import { collection, getDocs, getDoc, doc} from "firebase/firestore"; 
 import moment from "moment";
 
-export async function getBlogs(){
+export async function getBlogs(type){
     let posts = []
+    console.log()
+    //type 0 = murmur , 1 = blog
 
     try{
-        const querySnapshot = await getDocs(collection(fireStoreDB, "blogs"));
+        const querySnapshot = await getDocs(collection(fireStoreDB, type === 1 ?"blogs":"murmur"));
         querySnapshot.forEach((doc) => {
             let res_data = JSON.parse(JSON.stringify(doc.data()))
 
@@ -40,6 +42,19 @@ export async function getPostDetails(postId){
       }
 }   
 
+export async function getMurDetail(postId){
+    const docRef = doc(fireStoreDB, "murmur", postId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        return docSnap.data()
+        //console.log("Document data:", );
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+}   
+
 export async function getLastestBlogId(){
 
     let currPostId = 0
@@ -55,6 +70,7 @@ export async function getLastestBlogId(){
     }
     return currPostId
 }
+
 
 
 

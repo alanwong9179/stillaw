@@ -12,6 +12,7 @@ import About from "./screen/About";
 import Admin from "./screen/Admin";
 import useMeasure from "react-use-measure";
 import NotFound from "./screen/NotFound";
+import Murmur from "./screen/Murmur";
 
 function App() {
   const location = useLocation();
@@ -62,6 +63,8 @@ function App() {
             <Route  path="/" element={<PostList />} />
             <Route path="/home" element={<PostList />} />
             <Route path="/article/:articleId" element={<Article />} />
+            <Route path="/murmur/:murmurId" element={<Murmur />} />
+
             <Route path="/about" element={<About />} />
 
             <Route path="/admin" element={<Admin />} />

@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
 import React, { useState, useEffect } from "react";
-import { writeNewBlog } from "../functions/insertDb";
+import { writeNewBlog, writeNewMurmur } from "../functions/insertDb";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { green, orange, grey } from "@mui/material/colors";
 import { ThemeContext } from "@emotion/react";
@@ -76,12 +76,15 @@ export default function Admin() {
     setLoading(true)
     uploadMd(`/${type === 0 ? 'MurMur' : 'Blogs'}/${info.key}.md`, markdownFile).then(md => {
       console.log(md)
-     // onWrite()
+      onWrite()
     })
   }
   const onWrite = () => {
     const { blogId, coverImageUrl, tag, key, title } = info;
-    writeNewBlog(blogId, coverImageUrl, tag, key, title).then(f => {setLoading(false)});
+    type === 0 ? 
+    writeNewMurmur(blogId, coverImageUrl, tag, key, title).then(f => {setLoading(false)})
+    :
+    writeNewBlog(blogId, coverImageUrl, tag, key, title).then(f => {setLoading(false)})
 
   };
 

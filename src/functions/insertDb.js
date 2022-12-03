@@ -25,7 +25,7 @@ export async function writeNewMurmur(blogId, coverImgUrl, tag, key, title){
 
     let result;
 
-    await setDoc(doc(fireStoreDB, "MurMur", `${blogId}`), {
+    await setDoc(doc(fireStoreDB, "murmur", `${blogId}`), {
         imgUrl: coverImgUrl,
         tag: tag,
         time: new Date(),
